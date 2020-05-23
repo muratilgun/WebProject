@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebProject.Models.Model.SiteKimlik>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Keywords)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoURL)
+        </th>
+        <th>
+            İslemler
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Keywords)
+        </td>
+        <td>
+            @Html.Raw(item.Description)
+        </td>
+        <td>
+            <img class="img-responsive" src="@item.LogoURL" width="300" height="200" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SiteKimlikId }) 
+
+        </td>
+    </tr>
+}
+
+</table>
