@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebProject.Models.Model.Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable(
+            {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                }
+            }
+        );
+    });
+</script>
+<h2>Blog Kayıtları</h2>
+<a class="btn btn-danger" href="/Blog/Create/">Add New Blog</a>
+<table class="table table-striped" id="myTable">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>ImageURL</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BlogId</td>
+                <td>@item.Title</td>
+                <td>@item.Category.CategoryName</td>
+                <td><img src="@item.ImageURL" width="200" height="100" /></td>
+                <td> <a href="/Blog/Edit/@item.BlogId">Edit</a>| <a href="/Blog/Delete/@item.BlogId">Delete</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>
