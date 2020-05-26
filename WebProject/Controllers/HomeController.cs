@@ -6,6 +6,10 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using WebProject.Models.DataContext;
+using PagedList;
+using PagedList.Mvc;
+using System.Web.UI;
+using WebProject.Models.Model;
 
 namespace WebProject.Controllers
 {
@@ -71,13 +75,19 @@ namespace WebProject.Controllers
             }
             return View();
         }
-        public ActionResult Blog()
+        public ActionResult CategoryBlog(int id,int Page=1)
         {
-            return View(db.Blogs.Include("Category").ToList().OrderByDescending(x=> x.BlogId));
+            var blog = db.Blogs.Include("Category").OrderByDescending(x=>x.BlogId).Where(x => x.Category.CategoryId == id).ToPagedList(Page, 4);
+            return View(blog);
         }
+        public ActionResult Blog(int Page = 1)
+        {
+            return View(db.Blogs.Include("Category").OrderByDescending(x=> x.BlogId).ToPagedList(Page,5));
+        }
+
         public ActionResult BlogDetail(int id)
         {
-            var b = db.Blogs.Include("Category").Where(x => x.BlogId == id).SingleOrDefault();
+            var b = db.Blogs.Include("Category").Include("Comments").Where(x => x.BlogId == id).SingleOrDefault();
             return View(b);
         }
 
@@ -85,7 +95,20 @@ namespace WebProject.Controllers
         {
             
             return PartialView(db.Categories.Include("Blogs").ToList().OrderBy(x=> x.CategoryName));
-        }public ActionResult BlogPartial()
+        }
+        public JsonResult YorumYap(string adsoyad, string eposta, string icerik, int blogid)
+        {
+            if (icerik == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            db.Comments.Add(new Comment { FullName = adsoyad, Eposta = eposta, Contents = icerik, BlogId = blogid, Onay = false });
+            db.SaveChanges();
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult BlogPartial()
         {
             
             return PartialView(db.Blogs.ToList().OrderByDescending(x=> x.BlogId));

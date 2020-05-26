@@ -36,11 +36,43 @@
                         <img src="@Model.ImageURL" alt="@Model.Title" />
                     </div>
                     <p>
-                        @Html.Raw(Model.Title)
+                        @Html.Raw(Model.Contents)
                     </p>
-                   
+
                 </article>
 
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>Yorum Yap</h3>
+                        <form>
+                            <div>
+                                <input type="text" id="adsoyad" placeholder="Adınız Soyadınız" required class="form-control" />
+                                <br />
+                                <input type="email" id="eposta" placeholder="Mail Adresiniz" required class="form-control" />
+                                <br />
+                                <textarea typeof="text" id="icerik" class="form-control"></textarea>
+                                <br />
+                                <button type="submit" class="btn btn-success" id="gonder">Yorum Yap</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <h3>
+                            Blog Comments
+                        </h3>
+                        @foreach (var item in Model.Comments.OrderByDescending(x=> x.CommentId).Where(x=>x.Onay==true))
+                        {
+                        <p>@item.FullName - @item.Eposta</p> <br />
+                        <p>@item.Contents</p> <br />
+                        <hr />
+                        }
+
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <aside class="right-sidebar">
@@ -69,3 +101,26 @@
         </div>
     </div>
 </section>
+
+<script src="~/Content/SiteLayout/js/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#gonder").click(function () {
+            var adisoyadi = $("#adsoyad").val();
+            var epostasi = $("#eposta").val();
+            var yorumunuz = $("#icerik").val();
+            $.ajax({
+                url: '/Home/YorumYap/',
+                data: {adsoyad:adisoyadi,eposta: epostasi,icerik:yorumunuz,blogid:@Model.BlogId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz alındı, kontrol edildikten sonra yayınlanacaktır.");
+                }
+            });
+        });
+    })
+
+</script>

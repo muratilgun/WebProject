@@ -3,16 +3,19 @@
 
 @model IPagedList<WebProject.Models.Model.Blog>
 @{
-    ViewBag.Title = "Blog";
+    ViewBag.Title = "CategoryBlog";
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
+
+<h2>CategoryBlog</h2>
+
 <section id="inner-headline">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <ul class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
-                    <li class="active">Blog</li>
+                    <li class="active">Blog categories </li>
                 </ul>
             </div>
         </div>
@@ -47,7 +50,7 @@
                 }
 
                 <div id="pagination">
-                    @Html.PagedListPager(Model,Page=>Url.Action("Blog", new { Page}),PagedListRenderOptions.Classic)
+                    @Html.PagedListPager(Model, Page => Url.Action("Blog", new { Page }), PagedListRenderOptions.Classic)
                 </div>
             </div>
             <div class="col-lg-4">

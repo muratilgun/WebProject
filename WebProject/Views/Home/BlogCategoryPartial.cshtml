@@ -2,7 +2,7 @@
 <ul class="cat">
     @foreach (var item in Model)
     {
-        <li><i class="icon-angle-right"></i><a href="/Home/Blog/@item.CategoryId">@item.CategoryName</a><span> (@item.Blogs.Count())</span></li>
+        <li><i class="icon-angle-right"></i><a href="/Home/CategoryBlog/@item.CategoryId">@item.CategoryName</a><span> (@item.Blogs.Count())</span></li>
 
     }
 

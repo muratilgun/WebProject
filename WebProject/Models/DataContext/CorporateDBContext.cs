@@ -22,6 +22,7 @@ namespace WebProject.Models.DataContext
         public DbSet<Category> Categories { get; set; }
         public DbSet<SiteKimlik> SiteKimliks{ get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         
     }
