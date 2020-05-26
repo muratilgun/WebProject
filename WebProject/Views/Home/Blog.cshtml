@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebProject.Models.Model.Blog>
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li class="active">Blog</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                @foreach (var item in Model)
+                {
+                    <article>
+                        <div class="post-image">
+                            <div class="post-heading">
+                                <h3><a href="/Home/BlogDetail/@item.BlogId">@item.Title</a></h3>
+                            </div>
+                            <img src="@item.ImageURL" alt="@item.Title" />
+                        </div>
+                        <p>
+                            @Html.Raw(@item.Contents.Substring(0, 250))...
+                        </p>
+                        <div class="bottom-article">
+                            <ul class="meta-post">
+
+                                <li><i class="icon-folder-open"></i><a href="#"> @item.Category.CategoryName</a></li>
+                                @*<li><i class="icon-comments"></i><a href="#">4 Comments</a></li>*@
+                            </ul>
+                            <a href="/Home/BlogDetail/@item.BlogId" class="pull-right">Continue reading <i class="icon-angle-right"></i></a>
+                        </div>
+                    </article>
+
+                }
+
+                <div id="pagination">
+                    <span class="all">Page 1 of 3</span>
+                    <span class="current">1</span>
+                    <a href="#" class="inactive">2</a>
+                    <a href="#" class="inactive">3</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <aside class="right-sidebar">
+                    <div class="widget">
+                        <form class="form-search">
+                            <input class="form-control" type="text" placeholder="Search..">
+                        </form>
+                    </div>
+                    <div class="widget">
+                        <h5 class="widgetheading">Categories</h5>
+                        @{
+                            Html.RenderAction("BlogCategoryPartial", "Home");
+                        }
+                    </div>
+                    <div class="widget">
+                        <h5 class="widgetheading">Latest posts</h5>
+                        <ul class="recent">
+                            @{
+                                Html.RenderAction("BlogPartial", "Home");
+                            }
+                        </ul>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

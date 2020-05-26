@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using WebProject.Models.DataContext;
 
 namespace WebProject.Controllers
@@ -70,6 +71,26 @@ namespace WebProject.Controllers
             }
             return View();
         }
+        public ActionResult Blog()
+        {
+            return View(db.Blogs.Include("Category").ToList().OrderByDescending(x=> x.BlogId));
+        }
+        public ActionResult BlogDetail(int id)
+        {
+            var b = db.Blogs.Include("Category").Where(x => x.BlogId == id).SingleOrDefault();
+            return View(b);
+        }
+
+        public ActionResult BlogCategoryPartial()
+        {
+            
+            return PartialView(db.Categories.Include("Blogs").ToList().OrderBy(x=> x.CategoryName));
+        }public ActionResult BlogPartial()
+        {
+            
+            return PartialView(db.Blogs.ToList().OrderByDescending(x=> x.BlogId));
+        }
+
         public ActionResult FooterPartial()
         {
             ViewBag.Service = db.Services.ToList().OrderByDescending(x => x.ServiceId);

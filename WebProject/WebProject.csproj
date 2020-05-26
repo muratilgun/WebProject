@@ -1485,6 +1485,10 @@
     <Content Include="Views\Home\FooterPartial.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\BlogCategoryPartial.cshtml" />
+    <Content Include="Views\Home\BlogPartial.cshtml" />
+    <Content Include="Views\Home\BlogDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
