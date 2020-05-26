@@ -7,7 +7,6 @@
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebProject.Models.DataContext.CorporateDBContext>
     {
-        
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;

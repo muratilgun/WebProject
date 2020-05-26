@@ -1339,6 +1339,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KimlikController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\SliderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1351,6 +1352,7 @@
     <Compile Include="Models\Model\Contact.cs" />
     <Compile Include="Models\Model\Service.cs" />
     <Compile Include="Models\Model\SiteKimlik.cs" />
+    <Compile Include="Models\Model\Slider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1382,6 +1384,11 @@
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Slider\Create.cshtml" />
+    <Content Include="Views\Slider\Delete.cshtml" />
+    <Content Include="Views\Slider\Details.cshtml" />
+    <Content Include="Views\Slider\Edit.cshtml" />
+    <Content Include="Views\Slider\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1394,6 +1401,7 @@
     <Folder Include="Uploads\Blog\" />
     <Folder Include="Uploads\Kimlik\" />
     <Folder Include="Uploads\Service\" />
+    <Folder Include="Uploads\Slider\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
