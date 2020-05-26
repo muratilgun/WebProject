@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebProject.Models.Model.Slider>
+    @{ 
+        Layout = null;
+    }
+<div id="main-slider" class="flexslider">
+    <ul class="slides">
+        @foreach (var item in Model)
+        {
+            <li>
+                <img src="@item.ImageURL" alt="@item.Title" />
+                <div class="flex-caption">
+                    <h3>@item.Title</h3>
+                    <p>@item.Description</p>
+                    <a href="#" class="btn btn-theme">Learn More</a>
+                </div>
+            </li>
+
+
+        }
+    </ul>
+</div>
